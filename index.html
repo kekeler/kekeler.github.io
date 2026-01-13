@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -8,67 +8,85 @@
 </head>
 <body>
 
-<!-- Arka Plan Müzik -->
+<!-- Müzik -->
 <audio id="bgMusic" preload="auto">
   <source src="music.mp3" type="audio/mpeg">
-  Tarayıcınız ses etiketini desteklemiyor.
 </audio>
 
 <!-- Müzik Butonu -->
-<button id="musicBtn" class="music-btn">🔊</button>
+<button id="musicBtn" class="music-btn">▶</button>
 
-<!-- Ana Kart -->
+<!-- Kart -->
 <div class="card">
   <img src="pp.jpg" class="avatar">
   <h1>@kekeler</h1>
-  <p>• New Developer 𝒦enanツ</p>
+  <p>developer • chaos enjoyer</p>
 
+  <!-- Progress Bar -->
+  <div class="player">
+    <div class="progress-container">
+      <div id="progress"></div>
+    </div>
+    <div class="time">
+      <span id="current">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+  </div>
+
+  <!-- Sosyal -->
   <div class="links">
-    <a href="#" target="https://www.instagram.com/kenan.cme/">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
-    </a>
-    <a href="#" target="https://discord.gg/projectroleplay">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
-    </a>
-    <a href="#" target="https://github.com/kekeler">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
-    </a>
+    <a href="https://www.instagram.com/kenan.cme/"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"></a>
+    <a href="https://discord.gg/projectroleplay"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png"></a>
+    <a href="https://github.com/kekeler"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png"></a>
+  </div>
+
+  <!-- Sayaç -->
+  <div class="counter">
+    👁️ <span id="visit-count">0</span> ziyaret
   </div>
 </div>
 
+<!-- Sayaç Script -->
+<script async src="https://api.countapi.xyz/hit/kekeler.github.io/visits?callback=visit"></script>
+<script>
+function visit(res) {
+  document.getElementById("visit-count").innerText = res.value;
+}
+</script>
+
+<!-- Player Script -->
 <script>
 const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
+const progress = document.getElementById("progress");
+const current = document.getElementById("current");
+const duration = document.getElementById("duration");
 
-btn.addEventListener("click", () => {
+btn.onclick = () => {
   if (music.paused) {
-    music.volume = 0.4;
     music.play();
-    btn.textContent = "🔇";
+    btn.textContent = "⏸";
   } else {
     music.pause();
-    btn.textContent = "🔊";
+    btn.textContent = "▶";
   }
+};
+
+music.addEventListener("timeupdate", () => {
+  const percent = (music.currentTime / music.duration) * 100;
+  progress.style.width = percent + "%";
+
+  current.textContent = formatTime(music.currentTime);
+  duration.textContent = formatTime(music.duration);
 });
+
+function formatTime(time) {
+  if (isNaN(time)) return "0:00";
+  const min = Math.floor(time / 60);
+  const sec = Math.floor(time % 60).toString().padStart(2, "0");
+  return `${min}:${sec}`;
+}
 </script>
 
 </body>
 </html>
-
-<div class="counter">
-  👁️ <span id="visit-count"></span> ziyaret
-</div>
-
-<script async src="https://api.countapi.xyz/hit/kekeler.github.io/visits?callback=cb"></script>
-<script>
-function cb(response) {
-  document.getElementById("visit-count").innerText = response.value;
-}
-</script>
-
-
-
-
-
-
-
