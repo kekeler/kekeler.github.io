@@ -1,55 +1,58 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kekeler</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>kekeler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ARKA PLAN MÜZİĞİ -->
-    <audio id="bgMusic" src="music.mp3" loop></audio>
+<!-- Arka Plan Müzik -->
+<audio id="bgMusic" preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  Tarayıcınız ses etiketini desteklemiyor.
+</audio>
 
-    <!-- MÜZİK AÇ / KAPA -->
-    <button id="musicBtn">🔊</button>
+<!-- Müzik Butonu -->
+<button id="musicBtn" class="music-btn">🔊</button>
 
-    <!-- PROFİL KARTI -->
-    <div class="card">
-        <img src="pp.jpg" class="avatar" alt="Profil Foto">
-        <h1>@kekeler</h1>
-        <p>developer • chaos enjoyer</p>
+<!-- Ana Kart -->
+<div class="card">
+  <img src="pp.jpg" class="avatar">
+  <h1>@kekeler</h1>
+  <p>developer • chaos enjoyer</p>
 
-        <div class="links">
-            <a href="https://instagram.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
-            </a>
-            <a href="https://discord.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
-            </a>
-            <a href="https://github.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
-            </a>
-        </div>
-    </div>
+  <div class="links">
+    <a href="#" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+    </a>
+    <a href="#" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
+    </a>
+  </div>
+</div>
 
-    <!-- SCRIPT -->
-    <script>
-        const music = document.getElementById("bgMusic");
-        const btn = document.getElementById("musicBtn");
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
 
-        btn.addEventListener("click", () => {
-            if (music.paused) {
-                music.volume = 0.5;
-                music.play()
-                    .then(() => btn.textContent = "🔇")
-                    .catch(err => console.log("Müzik hatası:", err));
-            } else {
-                music.pause();
-                btn.textContent = "🔊";
-            }
-        });
-    </script>
+btn.addEventListener("click", () => {
+  if (music.paused) {
+    music.volume = 0.4;
+    music.play();
+    btn.textContent = "🔇";
+  } else {
+    music.pause();
+    btn.textContent = "🔊";
+  }
+});
+</script>
 
 </body>
 </html>
+
+
